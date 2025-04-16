@@ -1,0 +1,189 @@
+/* Med Bechir - light mode */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    line-height: 1.6;
+}
+
+body {
+    background-color: white;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+  
+/* tablettes */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+}
+  
+  /* téléphones */
+@media (max-width: 480px) {
+    .container {
+      width: 95%;
+      padding: 10px;
+    }
+}
+  
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+header .left-part {
+    display: flex;
+    gap: 100px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #2e2e2e;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+header nav :first-child {
+    color: #2f65f5;
+}
+
+header .rl {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+header .rl a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #2e2e2e;
+
+}
+
+header .rl :first-child {
+    color: white;
+    background-color: #2f65f5;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+section#about {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+section#about .content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+section#about .content h2 {
+    font-size: 30px;
+}
+
+section#about .content p {
+    font-size: 22px;
+    color: #2e2e2e;
+}
+
+section#about .image {
+    width: 1000px;
+}
+section#about img {
+    width: 100%;
+}
+
+section#features {
+    margin-top: 50px;
+}
+
+
+section#features {
+    margin-top: 50px;
+}
+.features-grid {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+}
+  
+/* Telephone */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+  
+/* Pc */
+@media (min-width: 769px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+section#features h3, section#features p {
+    text-align: center;
+}
+
+.features-grid div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.features-grid h3 {
+    color: #2f65f5;
+    font-size: 20px;
+}
+
+.features-grid p {
+    color: #2e2e2e;
+    font-size: 17px;
+}
+
+.features-grid .image {
+    width: 100px;
+}
+.features-grid .image img {
+    width: 100%;
+}
+
+footer {
+    margin-top: 50px;
+}
+
+footer p {
+    font-size: 15px;
+    text-align: center;
+}
