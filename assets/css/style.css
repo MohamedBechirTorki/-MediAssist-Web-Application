@@ -8,7 +8,8 @@
 }
 
 body {
-    background-color: white;
+    background-color: #f0f2f5;
+    
 }
 
 .container {
@@ -83,11 +84,26 @@ header .rl a {
 
 }
 
-header .rl :first-child {
+header .rl a:first-child {
     color: white;
     background-color: #2f65f5;
     padding: 20px;
     border-radius: 20px;
+}
+
+header .change-color {
+    margin-left: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: white;
+}
+
+header .change-color img {
+    width: 100%;
+    
 }
 
 section#about {
@@ -186,4 +202,105 @@ footer {
 footer p {
     font-size: 15px;
     text-align: center;
+    color: black;
+}
+
+
+form {
+    margin: 50px auto;
+    width: 350px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ls-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.ls-form h2 {
+    font-size: 25px;
+    color: #2f65f5;
+}
+
+.ls-form label {
+    font-size: 17px;
+    color: #2e2e2e;
+}
+
+.ls-form button {
+    font-size: 17px;
+    background-color: #2f65f5;
+    color: white;
+    padding: 10px 0;
+    font-weight: bold;
+    border: 2px solid #2f65f5;
+    transition-duration: 0.5s;
+}
+
+.ls-form button:hover {
+    background-color: white;
+    color: #2f65f5;
+}
+
+.ls-form input, .ls-form p {
+    font-size: 15px;
+}
+
+.dash-header {
+    margin-bottom: 50px;
+}
+
+.dash-nav {
+    width: 250px;
+}
+
+.dash-nav div {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    border-left: 3px solid transparent; 
+    padding: 10px;
+    margin-bottom: 20px;
+    transition-duration: 0.5s;
+}
+
+.dash-nav div:hover {
+    border-color: #2f65f5;
+}
+
+.dash-nav div span {
+    width: 20px;
+}
+
+.dash-nav div i {
+    color: #2e2e2e;
+    transition-duration: 0.5s;
+}
+
+
+.dash-nav div p {
+    color: #2e2e2e;
+    font-size: 15px;
+    transition-duration: 0.5s;
+}
+
+.dash-nav div:hover i, .dash-nav div:hover p {
+    color: #2f65f5;
+}
+
+header {
+    margin: 0 0 0 300px;
+}
+
+.right-dash-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }

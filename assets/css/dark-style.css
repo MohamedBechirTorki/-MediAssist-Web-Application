@@ -1,0 +1,39 @@
+/* Med Bechir - Dark mode */
+
+
+body {
+    background-color: #03070d;
+}
+
+h1 {
+    color: #ffffff;
+}
+
+h2 {
+    color: #e0e0e0;
+}
+
+p {
+    background-color: #03070d;
+}
+
+header nav a, header .rl a, section#about .content p, .features-grid p {
+    color: #a0a0a0;
+}
+
+.features-grid h3, header nav :first-child  {
+    color: #5e89ff;
+}
+/*
+.features-grid .image {
+    background-color: white;
+    border-radius: 50px;
+}*/
+
+header .rl a:first-child{
+    background-color: #5e89ff;
+}
+
+footer p {
+    color: white;
+}

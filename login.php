@@ -37,9 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Connexion - MediAssist</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-    <h2>Se connecter</h2>
-
+<body class="container">
     <?php if (!empty($errors)): ?>
         <div class="error">
             <ul>
@@ -50,7 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php endif; ?>
 
-    <form method="POST">
+    <form method="POST" class="ls-form">
+        <h2>Se connecter</h2>
         <label>Email:</label>
         <input type="email" name="email" required><br>
 
@@ -58,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="password" name="mot_de_passe" required><br>
 
         <button type="submit">Se connecter</button>
+        <p>Pas encore de compte ? <a href="registre.php">S'inscrire</a></p>
     </form>
 
-    <p>Pas encore de compte ? <a href="registre.php">S'inscrire</a></p>
 </body>
 </html>

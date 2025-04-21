@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <h2>Créer un compte</h2>
+    
 
     <?php if (!empty($errors)): ?>
         <div class="error">
@@ -100,7 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php endif; ?>
 
-    <form method="POST">
+    <form method="POST" class="ls-form">
+        <h2>Créer un compte</h2>
         <label>Nom complet:</label>
         <input type="text" name="nom" required><br>
 
@@ -124,8 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </select><br>
 
         <button type="submit">S'inscrire</button>
+        <p>Déjà un compte ? <a href="login.php">Se connecter</a></p>
     </form>
 
-    <p>Déjà un compte ? <a href="login.php">Se connecter</a></p>
+    
 </body>
 </html>

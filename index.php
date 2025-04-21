@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (isset($_SESSION['user_email'])) {
+    header("Location: dashboard.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,6 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MediAssist - Accueil</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link id="darkMode" rel="stylesheet" href="assets/css/dark-style.css">
 </head>
 <body class="container">
 
@@ -19,7 +29,10 @@
       <div class="rl">
         <a href="register.php">Créer un compte</a>
         <a href="login.php">Se connecter</a>
-      </div>
+        <div class='change-color' id='changeColor'>
+          <img src="./assets/images/moon.jpg" alt="">
+        </div>
+      </div> 
       
   </header>
 
@@ -62,5 +75,6 @@
     <p>Créer par <a href="">Mohamed Bechir Torki</a></p>
   </footer>
 
+  <script src='assets/js/main.js'></script>
 </body>
 </html>
