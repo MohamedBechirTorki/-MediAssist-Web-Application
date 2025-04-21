@@ -36,7 +36,7 @@ if (isset($_SESSION['user_email'])) {
       
   </header>
 
-  <main>
+  <main class="dash-main">
     <section id="about">
       <div class="content">
         <h2>Votre assistant santé peronnel, toujours à portée de main.</h2>

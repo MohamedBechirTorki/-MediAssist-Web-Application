@@ -19,29 +19,32 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
-<body class="container">
-    <header class="dash-header">
-        <h2>Tableau de bord</h2>
-        <div class="right-dash-header">
-            <div class="notif">
-                <i class="fa-regular fa-bell"></i>
-            </div>
-            <p><i class="fa-solid fa-user"></i> <span> <?= htmlspecialchars($_SESSION['user_name']) ?></span></p>
-            
-            <!--<a href="logout.php">Se déconnecter</a>-->
-            <div class='change-color' id='changeColor'>
-            <img src="./assets/images/moon.jpg" alt="">
-            </div>
-        </div>
-    </header>
+<body class="container dash-body">
     <nav class="dash-nav">
-        <div><span><i class="fa-solid fa-capsules"></i></span><p>Médicaments</p></div>
-        <div><span><i class="fa-regular fa-calendar-check"></i></span> <p>Rendez-vous Médicaux</p></div>
+        <div class="active"><span><i class="fa-solid fa-capsules"></i></span><p>Médicaments</p></div>
+        <div><span><i class="fa-regular fa-calendar-check"></i></span> <p>Rendez-vous</p></div>
         <div><span><i class="fa-solid fa-file-medical"></i></span> <p>Ordonnances</p></div>
         <div><span><i class="fa-regular fa-address-book"></i> </span> <p>Contacts d'Urgence</p></div>
     </nav>
-    <main>
-        <slide>
+    <main class="dash-main">
+        <header class="dash-header">
+            <h2>Tableau de bord</h2>
+            <div class="right-dash-header">
+                <div class="notif">
+                    <i class="fa-regular fa-bell"></i>
+                </div>
+                <p><i class="fa-solid fa-user"></i> <span> <?= htmlspecialchars($_SESSION['user_name']) ?></span></p>
+                
+                <!--<a href="logout.php">Se déconnecter</a>-->
+                <div class='change-color' id='changeColor'>
+                <img src="./assets/images/moon.jpg" alt="">
+                </div>
+            </div>
+        </header>
+    
+        <slider class="dash-slider">
+
+        </slider>
     </main>
     
 </body>

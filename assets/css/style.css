@@ -251,12 +251,34 @@ form {
     font-size: 15px;
 }
 
+.dash-body {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.dash-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .dash-header {
-    margin-bottom: 50px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dash-nav {
-    width: 250px;
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    height: 100%;
+    height: calc(100vh - 80px);
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dash-nav div {
@@ -269,7 +291,7 @@ form {
     transition-duration: 0.5s;
 }
 
-.dash-nav div:hover {
+.dash-nav div:hover,  .dash-nav .active{
     border-color: #2f65f5;
 }
 
@@ -289,13 +311,10 @@ form {
     transition-duration: 0.5s;
 }
 
-.dash-nav div:hover i, .dash-nav div:hover p {
+.dash-nav div:hover i, .dash-nav div:hover p, .dash-nav .active i , .dash-nav .active p {
     color: #2f65f5;
 }
 
-header {
-    margin: 0 0 0 300px;
-}
 
 .right-dash-header {
     display: flex;
@@ -303,4 +322,13 @@ header {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+}
+
+.dash-slider {
+    background-color: white;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
