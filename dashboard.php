@@ -113,10 +113,10 @@ while ($row = $result->fetch_assoc()) {
                                         <td><?= htmlspecialchars($med['debut']) ?></td>
                                         <td><?= htmlspecialchars($med['fin'] ?? '-') ?></td>
                                         <td>
-                                            <form action="modifier_medicament.php" method="GET" style="display:inline;">
-                                                <input type="hidden" name="id" value="<?= $med['id'] ?>">
-                                                <button type="submit">Modifier</button>
-                                            </form>
+                                            <button type="button"
+                                                onclick="ouvrirModal(<?= $med['id'] ?>, '<?= addslashes($med['nom']) ?>', '<?= addslashes($med['posologie']) ?>', <?= $med['frequence'] ?>, '<?= $med['debut'] ?>', '<?= $med['fin'] ?>')">
+                                                Modifier
+                                            </button>
 
                                             <form action="supprimer_medicament.php" method="POST" style="display:inline;" onsubmit="return confirm('Supprimer ce médicament ?');">
                                                 <input type="hidden" name="id" value="<?= $med['id'] ?>">
@@ -142,6 +142,32 @@ while ($row = $result->fetch_assoc()) {
             </article>
         </slider>
     </main>
+    <div id="modalModifier" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000099; justify-content:center; align-items:center;">
+        <div style="background:white; padding:20px; border-radius:10px; width:400px;">
+            <h3>Modifier le médicament</h3>
+            <form id="formModifier" method="POST" action="modifier_medicament.php">
+                <input type="hidden" name="id" id="modif_id">
+
+                <label for="modif_nom">Nom :</label>
+                <input type="text" name="nom" id="modif_nom" required><br><br>
+
+                <label for="modif_posologie">Posologie :</label>
+                <input type="text" name="posologie" id="modif_posologie" required><br><br>
+
+                <label for="modif_frequence">Fréquence (par jour) :</label>
+                <input type="number" name="frequence" id="modif_frequence" required min="1"><br><br>
+
+                <label for="modif_debut">Date de début :</label>
+                <input type="date" name="debut" id="modif_debut" required><br><br>
+
+                <label for="modif_fin">Date de fin :</label>
+                <input type="date" name="fin" id="modif_fin"><br><br>
+
+                <button type="submit">Enregistrer</button>
+                <button type="button" onclick="fermerModal()">Annuler</button>
+            </form>
+        </div>
+    </div>
     <script src='assets/js/main.js'></script>
 </body>
 </html>
