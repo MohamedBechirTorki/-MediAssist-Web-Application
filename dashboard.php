@@ -4,6 +4,24 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
+} 
+
+$mysqli = new mysqli("localhost", "root", "", "mediassistdb");
+if ($mysqli->connect_error) {
+    die("Erreur de connexion : " . $mysqli->connect_error);
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Récupération des médicaments pour cet utilisateur
+$stmt = $mysqli->prepare("SELECT * FROM medicaments WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$medicaments = [];
+while ($row = $result->fetch_assoc()) {
+    $medicaments[] = $row;
 }
 
 ?>
@@ -17,14 +35,15 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <link id="darkMode" rel="stylesheet" href="assets/css/dark-style.css">
 
 </head>
 <body class="container dash-body">
     <nav class="dash-nav">
-        <div class="active"><span><i class="fa-solid fa-capsules"></i></span><p>Médicaments</p></div>
-        <div><span><i class="fa-regular fa-calendar-check"></i></span> <p>Rendez-vous</p></div>
-        <div><span><i class="fa-solid fa-file-medical"></i></span> <p>Ordonnances</p></div>
-        <div><span><i class="fa-regular fa-address-book"></i> </span> <p>Contacts d'Urgence</p></div>
+        <div class="active"><span><i class="fa-solid fa-capsules"></i></span><p class="dash-p">Médicaments</p></div>
+        <div><span><i class="fa-regular fa-calendar-check"></i></span> <p class="dash-p">Rendez-vous</p></div>
+        <div><span><i class="fa-solid fa-file-medical"></i></span> <p class="dash-p">Ordonnances</p></div>
+        <div><span><i class="fa-regular fa-address-book"></i> </span> <p class="dash-p">Contacts d'Urgence</p></div>
     </nav>
     <main class="dash-main">
         <header class="dash-header">
@@ -33,7 +52,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="notif">
                     <i class="fa-regular fa-bell"></i>
                 </div>
-                <p><i class="fa-solid fa-user"></i> <span> <?= htmlspecialchars($_SESSION['user_name']) ?></span></p>
+                <p class="dash-p"><i class="fa-solid fa-user"></i> <span> <?= htmlspecialchars($_SESSION['user_name']) ?></span></p>
                 
                 <!--<a href="logout.php">Se déconnecter</a>-->
                 <div class='change-color' id='changeColor'>
@@ -43,9 +62,86 @@ if (!isset($_SESSION['user_id'])) {
         </header>
     
         <slider class="dash-slider">
+            <article id="medicament">
+                <div class="line">
+                <div class="partie partie-1">
+                    <h3>Ajouter un médicament</h3>
+                    <form action="./ajouter_medicament.php" method="POST">
+                        <label for="nom">Nom du médicament :</label><br>
+                        <input type="text" id="nom" name="nom" required><br><br>
 
+                        <label for="posologie">Posologie :</label><br>
+                        <input type="text" id="posologie" name="posologie" required><br><br>
+
+                        <label for="frequence">Fréquence (par jour) :</label><br>
+                        <input type="number" id="frequence" name="frequence" min="1" required><br><br>
+
+                        <label for="debut">Date de début :</label><br>
+                        <input type="date" id="debut" name="debut" required><br><br>
+
+                        <label for="fin">Date de fin :</label><br>
+                        <input type="date" id="fin" name="fin"><br><br>
+
+                        <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']?>"><!-- à adapter dynamiquement -->
+
+                        <button type="submit">Ajouter</button>
+                    </form>
+                </div> 
+                <div class="partie partie-2">
+                <h3>Consulter, modifier ou supprimer les médicaments enregistrés</h3>
+
+                    <?php if (empty($medicaments)): ?>
+                        <p>Aucun médicament à modifier ou supprimer.</p>
+                    <?php else: ?>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Posologie</th>
+                                    <th>Fréquence</th>
+                                    <th>Début</th>
+                                    <th>Fin</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($medicaments as $med): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($med['nom']) ?></td>
+                                        <td><?= htmlspecialchars($med['posologie']) ?></td>
+                                        <td><?= htmlspecialchars($med['frequence']) ?></td>
+                                        <td><?= htmlspecialchars($med['debut']) ?></td>
+                                        <td><?= htmlspecialchars($med['fin'] ?? '-') ?></td>
+                                        <td>
+                                            <form action="modifier_medicament.php" method="GET" style="display:inline;">
+                                                <input type="hidden" name="id" value="<?= $med['id'] ?>">
+                                                <button type="submit">Modifier</button>
+                                            </form>
+
+                                            <form action="supprimer_medicament.php" method="POST" style="display:inline;" onsubmit="return confirm('Supprimer ce médicament ?');">
+                                                <input type="hidden" name="id" value="<?= $med['id'] ?>">
+                                                <button type="submit" style="color:red;">Supprimer</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
+                </div>   
+
+            </article>
+            <article id="redezvous" >
+                
+            </article>
+            <article id="ordonnances">
+                
+            </article>
+            <article id="contact">
+
+            </article>
         </slider>
     </main>
-    
+    <script src='assets/js/main.js'></script>
 </body>
 </html>

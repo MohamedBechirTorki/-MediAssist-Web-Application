@@ -37,3 +37,32 @@ header .rl a:first-child{
 footer p {
     color: white;
 }
+
+
+/* dashboard */
+
+
+.dash-nav, .dash-header, .dash-slider {
+    background-color: #13171e;
+}
+
+.dash-p {
+    background-color: transparent;
+    color: #e0e0e0;
+}
+
+.dash-nav div:hover,  .dash-nav .active {
+    border-color: #5e89ff;
+}
+
+.dash-nav div i,.dash-nav div p {
+    color: #e0e0e0;
+}
+
+.dash-nav div:hover i, .dash-nav div:hover p, .dash-nav .active i , .dash-nav .active p {
+    color: #5e89ff;
+}
+
+.dash-slider article {
+    display: none;
+}

@@ -205,17 +205,13 @@ footer p {
     color: black;
 }
 
-
-form {
+.ls-form {
     margin: 50px auto;
     width: 350px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.ls-form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -331,4 +327,60 @@ form {
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+article .partie {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #cce4ff;
+}
+article .partie h3 {
+    color: #2e2e2e;
+    margin-bottom: 10px;
+}
+
+article .partie label {
+    color:#2e2e2e;
+    font-size: 13px;
+}
+
+article .partie input {
+    color:#2e2e2e;
+    padding: 10px;
+    font-size: 11px;
+}
+
+article .partie form {
+    
+}
+
+article#medicament {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+article#medicament .line {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+article#medicament .partie-1 {
+    width: 30%;
+}
+
+article#medicament .partie-2 {
+    width: 80%;
+}
+
+th {
+    padding: 10px 20px;
+    
+    font-size: 14px;
+}
+
+tr {
+    padding: 10px 20px;
+    font-size: 13px;
 }
