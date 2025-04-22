@@ -30,3 +30,28 @@ function ouvrirModal(id, nom, posologie, frequence, debut, fin) {
 function fermerModal() {
     document.getElementById('modalModifier').style.display = 'none';
 }
+
+let artButtons = document.querySelectorAll(".dash-nav div");
+let articles = document.querySelectorAll(".dash-slider article");
+console.log(artButtons);
+console.log(articles);
+
+for (let i = 1; i < articles.length; i++) {
+    articles[i].style.display = "none";
+}
+
+
+for (let i = 0; i < artButtons.length; i++) {
+    artButtons[i].onclick = () => {
+        for (let j = 0; j < artButtons.length; j++) {
+            artButtons[j].className = "";
+        }
+        artButtons[i].className = "active";
+
+        console.log("clicked");
+        for (let j = 0; j < articles.length; j++) {
+            articles[j].style.display = "none";
+        }
+        articles[i].style.display = "block";
+    }
+}

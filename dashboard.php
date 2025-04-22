@@ -132,13 +132,13 @@ while ($row = $result->fetch_assoc()) {
 
             </article>
             <article id="redezvous" >
-                
+                <p>redezvous</p>
             </article>
             <article id="ordonnances">
-                
+                <p>ordonnances</p>
             </article>
             <article id="contact">
-
+                <p>contact</p>
             </article>
         </slider>
     </main>

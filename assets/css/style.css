@@ -331,7 +331,7 @@ footer p {
 article .partie {
     padding: 20px;
     border-radius: 20px;
-    background-color: #cce4ff;
+    background-color: #dfdfdf;
 }
 article .partie h3 {
     color: #2e2e2e;
@@ -347,10 +347,6 @@ article .partie input {
     color:#2e2e2e;
     padding: 10px;
     font-size: 11px;
-}
-
-article .partie form {
-    
 }
 
 article#medicament {
@@ -378,11 +374,12 @@ article#medicament .partie-2 {
 
 th {
     padding: 10px 20px;
-    
     font-size: 14px;
+    color: #2e2e2e;
 }
 
 tr {
     padding: 10px 20px;
     font-size: 13px;
+    color: #2e2e2e;
 }

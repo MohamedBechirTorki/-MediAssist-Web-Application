@@ -66,3 +66,11 @@ footer p {
 .dash-slider article {
     display: none;
 }
+
+article .partie {
+    background-color: #0f1218;
+}
+
+article .partie h3, article .partie label, article .partie input, th, td {
+    color: #a0a0a0;
+}
