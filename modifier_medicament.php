@@ -1,28 +1,48 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit;
+}
+
 $mysqli = new mysqli("localhost", "root", "", "mediassistdb");
 if ($mysqli->connect_error) {
-    header("Location: dashboard.php?error=" . urlencode("Connexion échouée."));
-    exit();
+    die("Erreur de connexion : " . $mysqli->connect_error);
 }
 
-$id = $_POST['id'] ?? null;
-$nom = $_POST['nom'] ?? '';
-$posologie = $_POST['posologie'] ?? '';
-$frequence = $_POST['frequence'] ?? 0;
-$debut = $_POST['debut'] ?? '';
-$fin = $_POST['fin'] ?? null;
+// Récupération des données du formulaire
+$id = $_POST['id'];
+$nom = $_POST['nom'];
+$debut = $_POST['debut'];
+$fin = $_POST['fin'];
+$temps = $_POST['temps'] ?? []; // tableau d'heures
 
-if (!$id || !$nom || !$posologie || !$frequence || !$debut) {
-    header("Location: dashboard.php?error=" . urlencode("Champs manquants pour la modification."));
-    exit();
+// 1. Mise à jour des infos du médicament
+$stmt = $mysqli->prepare("UPDATE medicaments SET nom = ?, debut = ?, fin = ? WHERE id = ?");
+$stmt->bind_param("sssi", $nom, $debut, $fin, $id);
+$stmt->execute();
+$stmt->close();
+
+// 2. Suppression des anciennes heures de prise
+$stmt = $mysqli->prepare("DELETE FROM temps WHERE medicament_id = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$stmt->close();
+
+// 3. Insertion des nouvelles heures de prise
+if (!empty($temps)) {
+    $stmt = $mysqli->prepare("INSERT INTO temps (medicament_id, valeur) VALUES (?, ?)");
+    foreach ($temps as $heure) {
+        if (!empty($heure)) {
+            $stmt->bind_param("is", $id, $heure);
+            $stmt->execute();
+        }
+    }
+    $stmt->close();
 }
 
-$stmt = $mysqli->prepare("UPDATE medicaments SET nom = ?, posologie = ?, frequence = ?, debut = ?, fin = ? WHERE id = ?");
-$stmt->bind_param("ssissi", $nom, $posologie, $frequence, $debut, $fin, $id);
-
-if ($stmt->execute()) {
-    header("Location: dashboard.php?success=" . urlencode("Médicament modifié avec succès."));
-} else {
-    header("Location: dashboard.php?error=" . urlencode("Erreur lors de la modification : " . $stmt->error));
-}
-exit();
+$mysqli->close();
+header('Location: dashboard.php?success=modification');
+exit;
+?>

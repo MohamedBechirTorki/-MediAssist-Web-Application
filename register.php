@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 
-            $mail->setFrom('ton.email@gmail.com', 'MediAssist');
+            $mail->setFrom('mohamedbechirtorki@gmail.com', 'MediAssist');
             $mail->addAddress($email, $nom);
             $mail->Subject = 'Confirmation de votre compte MediAssist';
             $mail->Body    = "Bonjour $nom,\n\nVoici votre code de confirmation : $confirmation_code\n\nMerci de le saisir sur le site pour confirmer votre compte.\n\nCordialement,\nL'équipe MediAssist";
